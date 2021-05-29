@@ -1,5 +1,6 @@
 def jogar():
   import random
+  import time
   import os
   clear = lambda: os.system('clear')
   clear()
@@ -50,6 +51,31 @@ def jogar():
             rodada = rodada + 1 #parâmetro de incremento da variavel rodada que define a quantidade de tentativas do jogador
             pontos_perdidos = abs(numero_secreto - numero_escolhido) #parâmetro de decremento que define quantos pontos o jogador perdeu por erro
             player_points= player_points - pontos_perdidos
+            while(rodada==tentativas):
+              print('Deseja sacrificar alguns pontos seus por mais tentativas')
+              print('Digite 1 para sacrificar 200 pontos e ganhar 10 chances')
+              print('Digite 2 para sacrificar 100 pontos e ganhar 5 chances')
+              print('Digite 3 para sair do jogo ')
+              select_option = int(input('Digite sua opção: '))
+              if(select_option == 1):
+                tentativas = tentativas + 10
+                player_points = player_points - 200
+                clear()
+              else:
+                if(select_option==2):
+                  tentativas = tentativas + 5
+                  player_points = player_points - 100
+                  clear()
+                elif(select_option==3):
+                  player_points = 0
+                  break
+                else:
+                  print('opcao invalida')
+                  time.sleep(3)
+                  clear()
+
+            if(player_points <= 0):
+                break
         break
 
       print('Fim do Jogo, o numero secreto foi {}!'.format(numero_secreto))
